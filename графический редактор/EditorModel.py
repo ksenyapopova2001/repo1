@@ -62,6 +62,7 @@ class EditorModel:
         """
         Очистка селекторов объектов
         """
+
         self.selection_store.list = []
         self.curr_object = None
         for object in self.store.list:
@@ -115,9 +116,24 @@ class EditorModel:
         :return:
         """
         self.store.clear()
-        self.selection_store.list = []
+        self.selection_store.list = [] 
         self.scene.repaint()
 
+    def clear_obj(self):
+        def delete_multiple_element(list_object, indices):
+            indices = sorted(indices, reverse=True)
+            for idx in indices:
+                if idx < len(list_object):
+                    list_object.pop(idx)
+
+        index = []
+        for i in range(len(self.store.list)):
+            if  self.store.list[i].select == True:
+                index.append(i) 
+        delete_multiple_element(self.store.list, index)
+        self.selection_store.list = [] 
+        self.scene.repaint()
+        
     def repaint(self):
         """
         Метод перерисовки сцены

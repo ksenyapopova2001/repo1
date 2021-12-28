@@ -47,6 +47,9 @@ class EditorController:
     def clear(self):
         self.model.clear()
 
+    def clear_obj(self):
+        self.model.clear_obj()
+
 class ActiveStateContainer:
     """
     Контроль состояний

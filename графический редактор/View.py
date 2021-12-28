@@ -94,6 +94,7 @@ class View(QMainWindow):
 
         # Подключаем методы по нажатию на action в toolbar
         self.trash_action.triggered.connect(self.clear)
+        self.trash_obj_action.triggered.connect(self.clear_obj)
         self.line_action.triggered.connect(self.click_line)
         self.rect_action.triggered.connect(self.click_rect)
         self.select_action.triggered.connect(self.click_select)
@@ -139,6 +140,10 @@ class View(QMainWindow):
         self.trash_action = QAction(QIcon("images/trash.png"), 'trash', self)
         self.trash_action.setStatusTip("trash")
         self.figure_toolbar.addAction(self.trash_action)
+        # кнопка очистки
+        self.trash_obj_action = QAction(QIcon("images/trash.png"), 'trash', self)
+        self.trash_obj_action.setStatusTip("trash select")
+        self.figure_toolbar.addAction(self.trash_obj_action)
         # кнопка выбора цвета
         self.color_selection = QAction('Сменить цвет \nфигуры', self)
         self.color_selection.setStatusTip("color")
@@ -161,6 +166,13 @@ class View(QMainWindow):
         Метод очистки сцены
         """
         self.controller.clear()
+
+    def clear_obj(self):
+        """
+        Метод очистки сцены
+        """
+        self.controller.clear_obj()
+
 
     def open_color_dialog(self):
         """
